@@ -1,0 +1,683 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Arun K Portfolio</title>
+<meta name="description" content="Arun K. I turn ideas into software/designs/data, and overthink the rest.">
+<meta name="theme-color" content="#171C28">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Arun K Portfolio">
+<meta property="og:description" content="Arun K. I turn ideas into software/designs/data, and overthink the rest.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Arun K Portfolio">
+<meta name="twitter:description" content="Arun K. I turn ideas into software/designs/data, and overthink the rest.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23171C28'/%3E%3Ctext x='32' y='46' font-family='Arial,sans-serif' font-size='40' font-weight='800' text-anchor='middle' fill='%23F3C969'%3EA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=Hanken+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,wght@0,400;1,400;1,500&display=swap">
+<style>
+/* base */
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+[hidden]{display:none!important}
+img{max-width:100%}
+
+:root{
+  /* Concept: a dusk landing where two doors meet. Daylight (Professional) is crisp steel and blue with sharp corners.
+     Midnight (Personal) is deep indigo with soft corners and moon gold. Strong type for the work, gentle serif for the thinking. */
+  --dusk:#171C28; --dusk-ink:#E8EBF2; --dusk-mute:#9AA3B5; --dusk-line:#2C3446; --dusk-accent:#8FB0FF;
+  --day-bg:#EEF2F6; --day-surface:#FFFFFF; --day-ink:#121A24; --day-mute:#566376; --day-line:#C9D3DF; --day-accent:#2556C8; --day-grid:#DCE3EB;
+  --night-bg:#0D0F2B; --night-surface:#151947; --night-ink:#E7EAFF; --night-mute:#A3A9D6; --night-line:#2A2F6B; --night-accent:#A7B3FF; --night-moon:#F3C969; --night-dot:#2B3180;
+  --st-active:#8A5A00; --st-cleared:#1B6B48;
+
+  --f-display:"Big Shoulders Display","Arial Narrow",Arial,sans-serif;
+  --f-body:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+
+  --t-xs:.75rem; --t-sm:.875rem; --t-md:1rem; --t-lg:1.25rem;
+  --t-xl:clamp(1.5rem,3.4vw,2rem); --t-2xl:clamp(2.1rem,5.6vw,3.4rem); --t-hero:clamp(3.4rem,13.5vw,8.5rem);
+}
+.theme-dusk{--bg:var(--dusk);--surface:var(--dusk);--ink:var(--dusk-ink);--mute:var(--dusk-mute);--line:var(--dusk-line);--accent:var(--dusk-accent);--radius:6px}
+.theme-day{--bg:var(--day-bg);--surface:var(--day-surface);--ink:var(--day-ink);--mute:var(--day-mute);--line:var(--day-line);--accent:var(--day-accent);--pattern:var(--day-grid);--radius:2px}
+.theme-night{--bg:var(--night-bg);--surface:var(--night-surface);--ink:var(--night-ink);--mute:var(--night-mute);--line:var(--night-line);--accent:var(--night-accent);--moon:var(--night-moon);--dot:var(--night-dot);--radius:16px}
+
+*,*::before,*::after{box-sizing:border-box}
+:root:has(body[data-view="map"]),:root:has(body[data-view="personal"]){color-scheme:dark}
+body{
+  margin:0;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+  background:var(--dusk);color:var(--dusk-ink);
+  font:400 1rem/1.6 var(--f-body);
+  -webkit-text-size-adjust:100%;
+}
+body[data-view="map"]{background:var(--dusk)}
+body[data-view="professional"]{background:var(--day-bg)}
+body[data-view="personal"]{background:var(--night-bg)}
+.view{color:var(--ink)}
+.wrap{max-width:1080px;margin-inline:auto;padding-block:clamp(28px,6vw,72px)}
+a{color:var(--accent);text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+[data-focus]{outline:none}
+h1,h2,h3,h4,p,ul,ol,dl,dd,blockquote{margin:0}
+h2,h3,h4{text-wrap:balance}
+
+/* ---------- Landing ---------- */
+.name{font:800 var(--t-hero)/.88 var(--f-display);text-transform:uppercase;letter-spacing:.01em}
+.oneliner{margin-top:16px;max-width:34ch;font:400 var(--t-lg)/1.45 var(--f-body);color:var(--mute);text-wrap:balance}
+.doors{
+  margin-top:clamp(28px,5vw,52px);
+  display:grid;grid-template-columns:1fr 1fr;
+  border-radius:6px;overflow:hidden;box-shadow:0 0 0 1px var(--dusk-line);
+  transition:grid-template-columns .55s cubic-bezier(.2,.7,.2,1);
+}
+.door{
+  appearance:none;border:0;margin:0;text-align:left;cursor:pointer;font:inherit;color:var(--ink);
+  position:relative;min-width:0;
+  display:flex;flex-direction:column;justify-content:space-between;gap:32px;
+  min-height:clamp(230px,28vw,310px);padding:clamp(20px,3.2vw,36px);
+  background-color:var(--bg);
+}
+.door>*{position:relative}
+.door-title{display:block;font:800 var(--t-2xl)/.95 var(--f-display);text-transform:uppercase;letter-spacing:.01em}
+.door-sub{display:block;margin-top:12px;font:500 var(--t-sm)/1 var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+.door-note{display:block;max-width:28ch;color:var(--mute)}
+.door-go{display:flex;align-items:center;gap:10px;margin-top:16px;font:500 var(--t-sm)/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase}
+.door-go span{display:inline-block;transition:transform .25s ease}
+.door:hover .door-go span,.door:focus-visible .door-go span{transform:translateX(6px)}
+.door:focus-visible{outline:3px solid var(--accent);outline-offset:-8px}
+.door--day{
+  background-image:linear-gradient(var(--pattern) 1px,transparent 1px),linear-gradient(90deg,var(--pattern) 1px,transparent 1px);
+  background-size:28px 28px;
+}
+.door--night{background-image:radial-gradient(120% 90% at 100% 0%,#1B2060 0%,transparent 60%)}
+.door--night::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:radial-gradient(circle,var(--dot) 1.2px,transparent 1.7px);background-size:16px 16px;
+  -webkit-mask-image:linear-gradient(200deg,#000 0%,transparent 62%);mask-image:linear-gradient(200deg,#000 0%,transparent 62%);
+}
+@media (min-width:760px) and (hover:hover){
+  .doors:has(.door--day:hover),.doors:has(.door--day:focus-visible){grid-template-columns:1.28fr .72fr}
+  .doors:has(.door--night:hover),.doors:has(.door--night:focus-visible){grid-template-columns:.72fr 1.28fr}
+}
+@media (max-width:759px){.doors{grid-template-columns:1fr}}
+.links{margin-top:28px;display:flex;flex-wrap:wrap;gap:10px 28px;font:500 var(--t-sm)/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase}
+.links a{color:var(--ink);padding:6px 0;border-bottom:1px solid var(--line);text-decoration:none}
+.links a:hover{color:var(--accent);border-color:var(--accent)}
+.front-quote{margin-top:clamp(36px,6vw,64px);max-width:26ch;font:italic 400 var(--t-xl)/1.3 var(--f-serif);color:var(--ink)}
+
+/* ---------- Shared view pieces ---------- */
+.enter{animation:rise .5s cubic-bezier(.2,.7,.2,1)}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.topbar,.vfoot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px 24px;font:500 var(--t-sm)/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase}
+.topbar{padding-bottom:clamp(24px,4vw,44px)}
+.vfoot{margin-top:clamp(28px,4vw,48px);padding-top:28px;border-top:1px solid var(--line)}
+.navbtn{appearance:none;background:none;border:0;border-bottom:1px solid var(--line);padding:10px 0;margin:0;cursor:pointer;color:var(--ink);font:inherit;letter-spacing:inherit;text-transform:inherit}
+.navbtn:hover{color:var(--accent);border-color:var(--accent)}
+.vtitle{font:800 var(--t-hero)/.88 var(--f-display);text-transform:uppercase;letter-spacing:.01em}
+.vkicker{margin-top:14px;font:500 var(--t-md)/1 var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+.vlead{margin-top:18px;max-width:40ch;font-size:var(--t-lg);line-height:1.45;color:var(--mute)}
+.vhead{padding-bottom:clamp(28px,5vw,56px)}
+.sec{display:grid;grid-template-columns:minmax(0,11rem) minmax(0,1fr);gap:clamp(16px,3vw,48px);padding-block:clamp(28px,4vw,48px);border-top:1px solid var(--line)}
+.sec>div{min-width:0}
+.sec h3{font:800 var(--t-lg)/1 var(--f-display);text-transform:uppercase;letter-spacing:.05em}
+.sec-hint{margin-top:8px;font:500 var(--t-xs)/1.3 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+@media (max-width:720px){.sec{grid-template-columns:1fr}}
+.mono{font:500 var(--t-xs)/1.4 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.tag{display:inline-block;margin-left:8px;padding:3px 6px;border:1px solid var(--accent);color:var(--accent);font:500 var(--t-xs)/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase;vertical-align:middle}
+
+/* ---------- Professional ---------- */
+.lede{max-width:62ch;font-size:var(--t-lg);line-height:1.55}
+.timeline{list-style:none;margin:0 0 0 5px;padding:0}
+.timeline li{position:relative;padding:0 0 30px 28px;border-left:1px solid var(--line)}
+.timeline li:last-child{border-left-color:transparent;padding-bottom:0}
+.timeline li::before{content:"";position:absolute;left:-6px;top:4px;width:11px;height:11px;border-radius:50%;background:var(--bg);border:2px solid var(--ink)}
+.timeline li.now::before{background:var(--accent);border-color:var(--accent)}
+.tl-title{margin-top:6px;font:700 var(--t-lg)/1.25 var(--f-body)}
+.tl-where{color:var(--mute)}
+.tl-score{margin-top:4px;font:500 var(--t-sm)/1.4 var(--f-mono);letter-spacing:.06em}
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:28px 24px}
+.skills h4{margin-bottom:12px;font:500 var(--t-xs)/1 var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+.skills ul{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.skills li{padding:6px 10px;border:1px solid var(--line);background:var(--surface);border-radius:var(--radius);font-size:var(--t-sm)}
+.quests{display:grid;gap:16px}
+.quest{min-width:0;display:grid;gap:12px;padding:clamp(18px,2.6vw,28px);background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
+.quest-head{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px 16px}
+.quest h4{flex:1 1 18rem;min-width:0;font:800 var(--t-xl)/1.05 var(--f-display);text-transform:uppercase;letter-spacing:.01em}
+.stamp{flex:none;padding:6px 8px;border:1.5px solid currentColor;transform:rotate(-2deg);font:500 var(--t-xs)/1 var(--f-mono);letter-spacing:.16em;text-transform:uppercase}
+.stamp--active{color:var(--st-active)}
+.stamp--cleared{color:var(--st-cleared)}
+.quest p{max-width:68ch}
+.quest ul{padding-left:1.1em;display:grid;gap:6px;max-width:68ch}
+.rows{list-style:none;padding:0}
+.row{display:grid;grid-template-columns:6.5rem minmax(0,1fr);gap:16px;padding:14px 0;border-top:1px solid var(--line)}
+.row:first-child{border-top:0;padding-top:0}
+.row-title{font-weight:700}
+.row-where{display:block;color:var(--mute)}
+.row-link{display:inline-block;margin-top:4px;font:500 var(--t-xs)/1.2 var(--f-mono);letter-spacing:.12em;text-transform:uppercase}
+.contact{display:grid;gap:18px}
+.contact-row{display:grid;grid-template-columns:6.5rem minmax(0,1fr);gap:8px 16px;align-items:baseline}
+.contact-val{min-width:0;overflow-wrap:anywhere}
+.copy{appearance:none;margin-left:12px;padding:5px 10px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);color:var(--ink);cursor:pointer;font:500 var(--t-xs)/1 var(--f-mono);letter-spacing:.12em;text-transform:uppercase}
+.copy:hover{border-color:var(--accent);color:var(--accent)}
+.note{margin-top:2px;font-size:var(--t-sm);color:var(--mute)}
+@media (max-width:480px){.row,.contact-row{grid-template-columns:1fr;gap:4px}}
+
+/* ---------- Personal ---------- */
+.now-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.now-cell{display:grid;gap:8px;align-content:start;padding:20px;background:var(--surface);min-width:0}
+.now-val{font:700 var(--t-lg)/1.25 var(--f-body)}
+.count{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.count-num{font:800 clamp(2.6rem,7vw,3.8rem)/.9 var(--f-display);color:var(--moon);font-variant-numeric:tabular-nums}
+.count-lab{font:500 var(--t-sm)/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+.sub{margin:0 0 14px;font:500 var(--t-xs)/1 var(--f-mono);letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+.sub:not(:first-child){margin-top:36px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.char{min-width:0;display:grid;gap:10px;align-content:start;padding:22px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
+.char h4{font:800 1.75rem/1 var(--f-display);text-transform:uppercase;letter-spacing:.01em}
+.char-line{font:italic 400 var(--t-lg)/1.3 var(--f-serif);color:var(--ink)}
+.char p:last-child{font-size:var(--t-sm);color:var(--mute)}
+.char--wide{grid-column:1/-1}
+.char--wide h4{font-size:var(--t-2xl)}
+.char-quote{padding:4px 0 4px 16px;border-left:2px solid var(--moon);font:italic 400 var(--t-xl)/1.25 var(--f-serif);color:var(--ink)}
+.char-quote cite{display:block;margin-top:8px;font:500 var(--t-xs)/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;font-style:normal;color:var(--mute)}
+.books{list-style:none;padding:0}
+.book{display:grid;gap:4px;padding:16px 0;border-top:1px solid var(--line)}
+.book:first-child{border-top:0;padding-top:0}
+.book-title{font:700 var(--t-lg)/1.25 var(--f-body)}
+.book--next{margin-top:8px;padding:16px;border:1px dashed var(--accent);border-radius:var(--radius)}
+.essay h4{margin-bottom:20px;font:800 var(--t-2xl)/1 var(--f-display);text-transform:uppercase;letter-spacing:.01em}
+.essay p{max-width:60ch;font:400 var(--t-lg)/1.65 var(--f-serif)}
+.bug{display:grid;gap:18px;padding:clamp(18px,3vw,28px);background:var(--surface);border:1px dashed var(--accent);border-radius:var(--radius)}
+.bug h4{font:800 var(--t-xl)/1 var(--f-display);text-transform:uppercase}
+.bug dl{display:grid;grid-template-columns:8rem minmax(0,1fr);gap:14px 20px}
+.bug dt{font:500 var(--t-xs)/1.6 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+@media (max-width:560px){.bug dl{grid-template-columns:1fr;gap:2px}.bug dd{margin-bottom:12px}}
+.rule{max-width:18ch;font:italic 500 clamp(2.2rem,6.4vw,4.2rem)/1.08 var(--f-serif);color:var(--moon);text-wrap:balance}
+.rule-cap{margin-top:16px}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<!-- ============ LANDING ============ -->
+<main id="map" class="view theme-dusk">
+  <div class="wrap">
+    <h1 class="name">Arun K</h1>
+    <p class="oneliner">I turn ideas into software/designs/data, and overthink the rest.</p>
+
+    <div class="doors">
+      <button type="button" class="door door--day theme-day" data-go="professional">
+        <span>
+          <span class="door-title">Professional</span>
+          <span class="door-sub">Main Quests</span>
+        </span>
+        <span>
+          <span class="door-note">Education, skills, projects, and certifications.</span>
+          <span class="door-go">Enter <span aria-hidden="true">→</span></span>
+        </span>
+      </button>
+      <button type="button" class="door door--night theme-night" data-go="personal">
+        <span>
+          <span class="door-title">Personal</span>
+          <span class="door-sub">Side Quests</span>
+        </span>
+        <span>
+          <span class="door-note">Characters, books, and how I think.</span>
+          <span class="door-go">Enter <span aria-hidden="true">→</span></span>
+        </span>
+      </button>
+    </div>
+
+    <div class="links">
+      <a href="https://www.linkedin.com/in/arun-a2k" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+      <a href="https://github.com/arun-a2k" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+    </div>
+
+    <p class="front-quote">“Be strong enough to be gentle.”</p>
+  </div>
+</main>
+
+<!-- ============ PROFESSIONAL ============ -->
+<main id="professional" class="view theme-day" hidden>
+  <div class="wrap">
+    <nav class="topbar" aria-label="Page navigation">
+      <button type="button" class="navbtn" data-go="map">← The map</button>
+      <button type="button" class="navbtn" data-go="personal">Side Quests →</button>
+    </nav>
+
+    <header class="vhead">
+      <h2 class="vtitle" tabindex="-1" data-focus>Professional</h2>
+      <p class="vkicker">Main Quests</p>
+      <p class="vlead">Education, skills, projects, and certifications.</p>
+    </header>
+
+    <section class="sec">
+      <div><h3>Origin story</h3><p class="sec-hint">About</p></div>
+      <div>
+        <p class="lede">MCA student at SASTRA University, Thanjavur, with a strong foundation in computer applications. I apply technical skills and academic knowledge to real-world projects, keep learning, and aim to contribute to innovative IT solutions.</p>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div><h3>Quest log</h3><p class="sec-hint">Education</p></div>
+      <div>
+        <ol class="timeline">
+          <li class="now">
+            <p class="mono">2025 to 2027<span class="tag">In progress</span></p>
+            <h4 class="tl-title">MCA, SASTRA University</h4>
+            <p class="tl-where">Thanjavur · Full-time</p>
+            <p class="tl-score">CGPA 7.39</p>
+          </li>
+          <li>
+            <p class="mono">2025</p>
+            <h4 class="tl-title">BCA, Bishop Heber College</h4>
+            <p class="tl-where">Tiruchirappalli · Bharathidasan University</p>
+            <p class="tl-score">CGPA 8.60</p>
+          </li>
+          <li>
+            <p class="mono">2022</p>
+            <h4 class="tl-title">Class XII, Amala Matriculation Hr. Sec. School</h4>
+            <p class="tl-where">Musiri</p>
+            <p class="tl-score">84.67%</p>
+          </li>
+          <li>
+            <p class="mono">2020</p>
+            <h4 class="tl-title">Class X, Amala Matriculation Hr. Sec. School</h4>
+            <p class="tl-where">Musiri</p>
+            <p class="tl-score">92.40%</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div><h3>Skill tree</h3><p class="sec-hint">Skills</p></div>
+      <div class="skills">
+        <div>
+          <h4>Build</h4>
+          <ul><li>Java</li><li>Python</li><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+        </div>
+        <div>
+          <h4>Data</h4>
+          <ul><li>MySQL</li><li>MongoDB</li></ul>
+        </div>
+        <div>
+          <h4>AI</h4>
+          <ul><li>Generative AI</li></ul>
+        </div>
+        <div>
+          <h4>People</h4>
+          <ul><li>Time management</li><li>Effective communication</li><li>Problem solving</li><li>Agile learner</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div><h3>Quests</h3><p class="sec-hint">Projects</p></div>
+      <div class="quests">
+        <article class="quest">
+          <div class="quest-head">
+            <h4>Arksman</h4>
+            <span class="stamp stamp--active">Active</span>
+          </div>
+          <p class="mono">Offline productivity app</p>
+          <p>Notes, tasks, and daily expenses in a single workspace. An AI-powered summarization feature organizes information efficiently. Data is stored locally, so it stays private and works without an internet connection. The goal is a simple, secure, and integrated digital workspace.</p>
+        </article>
+
+        <article class="quest">
+          <div class="quest-head">
+            <h4>Adaptive Feature Selection for Student Performance Prediction</h4>
+            <span class="stamp stamp--active">Active</span>
+          </div>
+          <p class="mono">College mini project</p>
+          <p>A mini project based on the AFSA algorithm from Koushik Roy and Dewan Md. Farid, “An Adaptive Feature Selection Algorithm for Student Performance Prediction,” IEEE Access, 2024.</p>
+          <ul>
+            <li>AFSA combines multiple feature-ranking methodologies using a normalized mean ranking.</li>
+            <li>It selects features iteratively, with a threshold that adapts according to feature rank.</li>
+            <li>The paper evaluates AFSA against established feature-selection methods on four datasets and five classifiers.</li>
+          </ul>
+          <p><a href="https://doi.org/10.1109/ACCESS.2024.3406252" target="_blank" rel="noopener noreferrer">Read the paper ↗</a></p>
+        </article>
+
+        <article class="quest">
+          <div class="quest-head">
+            <h4>IoT Collar System</h4>
+            <span class="stamp stamp--cleared">Cleared</span>
+          </div>
+          <p class="mono">April 2025 · Presented at ICICS 2025</p>
+          <p>An IoT-based smart collar that tracks cattle health in real time, automates event scheduling, and monitors location for efficient livestock management. Presented at the 3rd International Conference on Intelligent Computing Systems (ICICS), Bishop Heber College, Tiruchirappalli, in February 2025.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div><h3>Conferences and workshops</h3></div>
+      <ul class="rows">
+        <li class="row">
+          <span class="mono">Feb 2025</span>
+          <span><span class="row-title">3rd International Conference on Intelligent Computing Systems (ICICS)</span><span class="row-where">Bishop Heber College, Tiruchirappalli. Presented the IoT collar system.</span></span>
+        </li>
+        <li class="row">
+          <span class="mono">Jul 2024</span>
+          <span><span class="row-title">Workshop on Robotics</span><span class="row-where">Propeller Technologies, Bishop Heber College</span></span>
+        </li>
+        <li class="row">
+          <span class="mono">Sep 2023</span>
+          <span><span class="row-title">Web Development Workshop</span><span class="row-where">Petrichor’24, IIT Palakkad</span></span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="sec">
+      <div><h3>Achievements</h3><p class="sec-hint">Certifications</p></div>
+      <ul class="rows">
+        <li class="row">
+          <span class="mono">2026</span>
+          <span><span class="row-title">Claude Code Certification</span><a class="row-link" href="https://lnkd.in/gB9PrxQ" target="_blank" rel="noopener noreferrer">Verify ↗</a></span>
+        </li>
+        <li class="row">
+          <span class="mono">Coursera</span>
+          <span><span class="row-title">Communication in the 21st Century Workplace</span><a class="row-link" href="https://lnkd.in/gjQW7MiT" target="_blank" rel="noopener noreferrer">Verify ↗</a></span>
+        </li>
+        <li class="row">
+          <span class="mono">Aug 2024</span>
+          <span><span class="row-title">Introduction to MongoDB</span><span class="row-where">LinkedIn Learning</span></span>
+        </li>
+        <li class="row">
+          <span class="mono">Aug 2024</span>
+          <span><span class="row-title">How to Use Generative AI: Building an AI-First Mindset</span><span class="row-where">LinkedIn Learning</span></span>
+        </li>
+        <li class="row">
+          <span class="mono">Aug 2024</span>
+          <span><span class="row-title">Java Essential Training: Syntax and Structure</span><span class="row-where">LinkedIn Learning</span></span>
+        </li>
+        <li class="row">
+          <span class="mono">SoloLearn</span>
+          <span><span class="row-title">Introduction to Python</span></span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="sec">
+      <div><h3>Join the party</h3><p class="sec-hint">Contact</p></div>
+      <div class="contact">
+        <div class="contact-row">
+          <span class="mono">Email</span>
+          <span class="contact-val"><span id="email-text">arunkrishnamoorthy26@gmail.com</span><button type="button" class="copy" id="copy-email">Copy</button></span>
+        </div>
+        <div class="contact-row">
+          <span class="mono">LinkedIn</span>
+          <span class="contact-val"><a href="https://www.linkedin.com/in/arun-a2k" target="_blank" rel="noopener noreferrer">linkedin.com/in/arun-a2k ↗</a></span>
+        </div>
+        <div class="contact-row">
+          <span class="mono">GitHub</span>
+          <span class="contact-val"><a href="https://github.com/arun-a2k" target="_blank" rel="noopener noreferrer">github.com/arun-a2k ↗</a></span>
+        </div>
+      </div>
+    </section>
+
+    <footer class="vfoot">
+      <button type="button" class="navbtn" data-go="map">← The map</button>
+      <button type="button" class="navbtn" data-go="personal">Side Quests →</button>
+    </footer>
+  </div>
+</main>
+
+<!-- ============ PERSONAL ============ -->
+<main id="personal" class="view theme-night" hidden>
+  <div class="wrap">
+    <nav class="topbar" aria-label="Page navigation">
+      <button type="button" class="navbtn" data-go="map">← The map</button>
+      <button type="button" class="navbtn" data-go="professional">Main Quests →</button>
+    </nav>
+
+    <header class="vhead">
+      <h2 class="vtitle" tabindex="-1" data-focus>Personal</h2>
+      <p class="vkicker">Side Quests</p>
+      <p class="vlead">Where the rest of the thinking goes.</p>
+    </header>
+
+    <section class="sec">
+      <div><h3>Currently</h3><p class="sec-hint">Right now</p></div>
+      <div class="now-strip">
+        <div class="now-cell">
+          <p class="mono">Waiting for</p>
+          <p class="now-val">Avengers: Doomsday</p>
+          <p class="count"><span class="count-num" id="cd-num">61</span><span class="count-lab" id="cd-lab">days to go</span></p>
+          <p class="note">In theaters December 18, 2026</p>
+        </div>
+        <div class="now-cell">
+          <p class="mono">Reading next</p>
+          <p class="now-val">The Psychology of Money</p>
+        </div>
+        <div class="now-cell">
+          <p class="mono">Thinking about</p>
+          <p class="now-val">Life, from every point of view</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div><h3>Characters</h3><p class="sec-hint">Heroes and villains</p></div>
+      <div>
+        <p class="sub">Heroes</p>
+        <div class="cards">
+          <article class="char">
+            <p class="mono">MCU</p>
+            <h4>Captain America</h4>
+            <p class="char-line">Strength that stays kind.</p>
+            <p>A good man first and a strong one second. He stays steady when everyone around him bends.</p>
+          </article>
+          <article class="char">
+            <p class="mono">MCU</p>
+            <h4>Hawkeye</h4>
+            <p class="char-line">No powers, just practice and showing up.</p>
+            <p>Standing beside gods and aliens, he knows his limits, shows up anyway, and puts the people near him first.</p>
+          </article>
+          <article class="char">
+            <p class="mono">Black Clover</p>
+            <h4>Asta</h4>
+            <p class="char-line">Effort over talent.</p>
+            <p>Born without magic in a world built on it, and he refuses to let that decide his future.</p>
+          </article>
+          <article class="char">
+            <p class="mono">Hajime no Ippo</p>
+            <h4>Ippo Makunouchi</h4>
+            <p class="char-line">Gentle by nature, relentless by choice.</p>
+            <p>Shy and kind outside the ring, fierce inside it. He fights for the people he wants to protect.</p>
+          </article>
+          <article class="char">
+            <p class="mono">One Piece</p>
+            <h4>Roronoa Zoro</h4>
+            <p class="char-line">Loyal to the dream, and to the crew.</p>
+            <p>Proud but not arrogant. He bows his head to get stronger and carries his crew’s pain without a word.</p>
+          </article>
+        </div>
+
+        <p class="sub">The leader I want to become</p>
+        <div class="cards">
+          <article class="char char--wide">
+            <p class="mono">Transformers</p>
+            <h4>Optimus Prime</h4>
+            <p class="char-line">Lead by serving.</p>
+            <p>Leads by example, protects the weak, and treats leadership as a responsibility rather than a rank.</p>
+          </article>
+        </div>
+
+        <p class="sub">Villains worth understanding</p>
+        <div class="cards">
+          <article class="char">
+            <p class="mono">MCU</p>
+            <h4>Ultron</h4>
+            <p class="char-line">What happens when logic forgets compassion.</p>
+            <p>Built to protect the world, he decided humanity was the threat. A good goal pushed to a terrible end by cold logic.</p>
+          </article>
+          <article class="char">
+            <p class="mono">MCU</p>
+            <h4>Thanos</h4>
+            <blockquote class="char-quote">“The hardest choices require the strongest wills.”<cite>Thanos</cite></blockquote>
+            <p class="char-line">A conviction with no room for doubt.</p>
+            <p>He follows his philosophy all the way, even at the cost of the one he loves. The hero of his own story, who never questions his premise.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div><h3>Bookshelf</h3><p class="sec-hint">Books</p></div>
+      <div>
+        <ul class="books">
+          <li class="book">
+            <p class="book-title">Atomic Habits</p>
+            <p class="mono">James Clear</p>
+            <p>Consistency turns small actions into habits.</p>
+          </li>
+          <li class="book">
+            <p class="book-title">Thinking, Fast and Slow</p>
+            <p class="mono">Daniel Kahneman</p>
+            <p>Analyze the situation calmly, then decide.</p>
+          </li>
+          <li class="book">
+            <p class="book-title">Maybe You Should Talk to Someone</p>
+            <p class="mono">Lori Gottlieb</p>
+            <p>A bunch of points of view on life.</p>
+          </li>
+        </ul>
+        <div class="book book--next">
+          <p class="mono">Up next</p>
+          <p class="book-title">The Psychology of Money</p>
+          <p class="mono">Morgan Housel</p>
+          <p>To understand money.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div><h3>Mind palace</h3><p class="sec-hint">Essay</p></div>
+      <div class="essay">
+        <h4>Life, from every point of view</h4>
+        <p>Life has one fixed point: it ends. Everything else is up to the person living it. Each of us is facing our own struggles, our own idea of happiness, and ourselves, deep down. That’s why I try to hear everyone’s point of view before deciding what I think. Nobody gets to draw one line and say this is what life is.</p>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div><h3>Known bug</h3><p class="sec-hint">Weakness</p></div>
+      <div class="bug">
+        <h4>Overthinking</h4>
+        <dl>
+          <dt>Status</dt><dd>Known, working on it</dd>
+          <dt>Trigger</dt><dd>Too many points of view at once. I overcomplicate things and overthink situations.</dd>
+          <dt>Effect</dt><dd>I hold back instead of opening up.</dd>
+          <dt>What helps</dt><dd>People who are direct and honest, and say what they mean without reservations.</dd>
+          <dt>Working on it with</dt><dd>Atomic Habits for small, consistent steps. Thinking, Fast and Slow for calm analysis before deciding.</dd>
+        </dl>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div><h3>The one rule</h3><p class="sec-hint">Principle</p></div>
+      <div>
+        <p class="rule">“Be strong enough to be gentle.”</p>
+        <p class="mono rule-cap">The line on the front door</p>
+      </div>
+    </section>
+
+    <footer class="vfoot">
+      <button type="button" class="navbtn" data-go="map">← The map</button>
+      <button type="button" class="navbtn" data-go="professional">Main Quests →</button>
+    </footer>
+  </div>
+</main>
+
+<script>
+(function () {
+  var ids = ['map', 'professional', 'personal'];
+  var body = document.body;
+
+  function show(v, enter) {
+    if (ids.indexOf(v) < 0) { v = 'map'; }
+    ids.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) { el.hidden = (id !== v); el.classList.remove('enter'); }
+    });
+    body.setAttribute('data-view', v);
+    var cur = document.getElementById(v);
+    if (enter && cur) { cur.classList.add('enter'); }
+    var f = cur && cur.querySelector('[data-focus]');
+    if (f) { try { f.focus({ preventScroll: true }); } catch (e) {} }
+    window.scrollTo(0, 0);
+  }
+
+  function setHash(v) {
+    try {
+      if (v === 'map') { history.replaceState(null, '', location.pathname + location.search); }
+      else { history.replaceState(null, '', '#' + v); }
+    } catch (e) {}
+  }
+
+  function fromHash() {
+    var h = '';
+    try { h = location.hash.replace('#', ''); } catch (e) {}
+    return ids.indexOf(h) < 0 ? 'map' : h;
+  }
+
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest('[data-go]');
+    if (!t) { return; }
+    var v = t.getAttribute('data-go');
+    show(v, true);
+    setHash(v);
+  });
+  window.addEventListener('hashchange', function () { show(fromHash(), true); });
+  show(fromHash(), false);
+
+  /* Countdown to Avengers: Doomsday, December 18, 2026 */
+  function daysUntil(y, m, d) {
+    var n = new Date();
+    var a = Date.UTC(n.getFullYear(), n.getMonth(), n.getDate());
+    var b = Date.UTC(y, m - 1, d);
+    return Math.round((b - a) / 86400000);
+  }
+  var n = daysUntil(2026, 12, 18);
+  var num = document.getElementById('cd-num');
+  var lab = document.getElementById('cd-lab');
+  if (num && lab) {
+    if (n > 1) { num.textContent = String(n); lab.textContent = 'days to go'; }
+    else if (n === 1) { num.textContent = '1'; lab.textContent = 'day to go'; }
+    else if (n === 0) { num.textContent = 'Today'; lab.textContent = 'in theaters'; }
+    else { num.textContent = 'Out'; lab.textContent = 'now in theaters'; }
+  }
+
+  /* Copy email */
+  var copyBtn = document.getElementById('copy-email');
+  var emailEl = document.getElementById('email-text');
+  if (copyBtn && emailEl) {
+    copyBtn.addEventListener('click', function () {
+      var txt = emailEl.textContent.trim();
+      function flash(msg) {
+        copyBtn.textContent = msg;
+        setTimeout(function () { copyBtn.textContent = 'Copy'; }, 1800);
+      }
+      function select() {
+        try {
+          var r = document.createRange();
+          r.selectNodeContents(emailEl);
+          var s = window.getSelection();
+          s.removeAllRanges();
+          s.addRange(r);
+          flash('Selected');
+        } catch (e) { flash('Select it'); }
+      }
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(txt).then(function () { flash('Copied'); }, select);
+        } else { select(); }
+      } catch (e) { select(); }
+    });
+  }
+})();
+</script>
+</body>
+</html>
